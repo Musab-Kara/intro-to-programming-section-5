@@ -20,10 +20,7 @@ function hideAllMessages() {
 
   }
 
-  // for (let elementIndex = 0; elementIndex <= messages.length; elementIndex++) {
-  //   console.log(messages[elementIndex]);
-  //   messages[elementIndex].style.display = "none";
-  // }
+
 }
 hideAllMessages();
 
@@ -42,50 +39,65 @@ function checkGuess() {
   const guess = parseInt(guessInput.value, 10);
   attempts = attempts + 1;
 
+  console.log(guessInput)
+
   hideAllMessages();
 
-  if (guess === targetNumber) {
-    numberOfGuessesMessage.style.display = 'inline';
-
-    numberOfGuessesMessage.innerHTML = `You made ${attempts} guesses`;
-
-    correctMessage.style.display = 'inline';
+  if (isNaN(guess) == true) {
 
 
-    submitButton.disabled = true;
-    guessInput.disabled = true;
+    alert("please insert a number");
+    maxNumberOfAttempts += 1;
+
+
   }
 
-  if (guess !== targetNumber) {
+  else {
 
-    if (guess < targetNumber) {
-      tooLowMessage.style.display = 'inline';
+    if (guess === targetNumber) {
+      numberOfGuessesMessage.style.display = 'inline';
 
-    } else {
-      tooHighMessage.style.display = 'inline';
+      numberOfGuessesMessage.innerHTML = `You made ${attempts} guesses`;
 
+      correctMessage.style.display = 'inline';
+
+
+      submitButton.disabled = true;
+      guessInput.disabled = true;
     }
 
-    let remainingAttempts = maxNumberOfAttempts - attempts;
+    if (guess !== targetNumber) {
 
-    numberOfGuessesMessage.style.display = 'inline';
+      if (guess < targetNumber) {
 
-    numberOfGuessesMessage.innerHTML = `You guessed ${guess}. <br> ${remainingAttempts} guesses remaining`;
+        tooLowMessage.style.display = 'inline';
+
+      } else {
+
+        tooHighMessage.style.display = 'inline';
+
+      }
+
+      let remainingAttempts = maxNumberOfAttempts - attempts;
+
+      numberOfGuessesMessage.style.display = 'inline';
+
+      numberOfGuessesMessage.innerHTML = `You guessed ${guess}. <br> ${remainingAttempts} guesses remaining <br>`;
+    }
+
+    if (attempts === maxNumberOfAttempts) {
+      submitButton.disabled = true;
+      guessInput.disabled = true;
+    }
+
+    // guessInput.value = '';
+    guessInput.value = '';
+
+    // resetButton.style.display = '';
+    resetButton.style.display = 'inline';
   }
 
-  if (attempts === maxNumberOfAttempts) {
-    submitButton.disabled = true;
-    guessInput.disabled = true;
-  }
-
-  // guessInput.value = '';
-  guessInput.value = '';
-
-  // resetButton.style.display = '';
-  resetButton.style.display = 'inline';
 }
-
-
 
 function setup() {
 
