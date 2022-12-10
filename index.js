@@ -22,6 +22,7 @@ function hideAllMessages() {
 
 
 }
+
 hideAllMessages();
 
 // Returns a random number from min (inclusive) to max (exclusive)
@@ -38,8 +39,6 @@ function checkGuess() {
   // Get value from guess input element
   const guess = parseInt(guessInput.value, 10);
   attempts = attempts + 1;
-
-  console.log(guessInput)
 
   hideAllMessages();
 
